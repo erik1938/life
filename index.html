@@ -14,64 +14,57 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: #000000;
-            background-image: 
-                repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,215,0,.03) 10px, rgba(255,215,0,.03) 20px),
-                repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(255,215,0,.03) 10px, rgba(255,215,0,.03) 20px);
+            background: linear-gradient(135deg, #1a0033 0%, #2d1b4e 25%, #4a148c 50%, #2d1b4e 75%, #1a0033 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
             min-height: 100vh;
             padding: 20px;
-            position: relative;
-            overflow-x: hidden;
         }
 
-        /* Animated background stars */
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
         body::before {
-            content: "⭐";
+            content: "✨💫⭐🌟";
             position: fixed;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             font-size: 30px;
             animation: twinkle 3s infinite;
             pointer-events: none;
-            opacity: 0.3;
+            opacity: 0.4;
         }
 
         @keyframes twinkle {
-            0%, 100% { opacity: 0.1; }
-            50% { opacity: 0.3; }
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 0.5; }
         }
 
         .container {
             max-width: 1400px;
             margin: 0 auto;
-            background: #1a1a1a;
+            background: rgba(255, 255, 255, 0.95);
             border-radius: 20px;
             padding: 30px;
-            box-shadow: 0 0 50px rgba(255, 215, 0, 0.3), 0 0 100px rgba(255, 215, 0, 0.1);
-            border: 3px solid #FFD700;
+            box-shadow: 0 0 60px rgba(138, 43, 226, 0.6);
+            border: 4px solid #a855f7;
             position: relative;
         }
 
-        /* Manga-style corner decoration */
-        .container::before {
+        .container::before, .container::after {
             content: "⚡";
             position: absolute;
-            top: -15px;
-            left: -15px;
             font-size: 50px;
             animation: pulse 1.5s infinite;
+            filter: drop-shadow(0 0 10px #a855f7);
         }
 
-        .container::after {
-            content: "⚡";
-            position: absolute;
-            bottom: -15px;
-            right: -15px;
-            font-size: 50px;
-            animation: pulse 1.5s infinite;
-        }
+        .container::before { top: -15px; left: -15px; }
+        .container::after { bottom: -15px; right: -15px; }
 
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
@@ -80,12 +73,9 @@
 
         header {
             text-align: center;
-            margin-bottom: 40px;
-            padding-bottom: 20px;
-            border-bottom: 5px solid #FFD700;
-            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 50%, #c084fc 100%);
             margin: -30px -30px 40px -30px;
-            padding: 30px;
+            padding: 40px 30px;
             border-radius: 20px 20px 0 0;
             position: relative;
             overflow: hidden;
@@ -98,7 +88,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
             animation: shine 3s infinite;
         }
 
@@ -109,16 +99,10 @@
 
         h1 {
             font-family: 'Bangers', cursive;
-            color: #000000;
+            color: #ffffff;
             font-size: 3.5em;
-            margin-bottom: 10px;
-            text-shadow: 
-                3px 3px 0px #FFD700,
-                -3px -3px 0px #FFA500,
-                3px -3px 0px #FFD700,
-                -3px 3px 0px #FFA500;
+            text-shadow: 3px 3px 0px #6d28d9, 0 0 40px #8b5cf6;
             letter-spacing: 5px;
-            transform: rotate(-2deg);
             animation: wobble 2s infinite;
         }
 
@@ -129,7 +113,7 @@
 
         .subtitle {
             font-family: 'Permanent Marker', cursive;
-            color: #000000;
+            color: #ffffff;
             font-size: 1.2em;
             text-transform: uppercase;
         }
@@ -144,38 +128,26 @@
 
         .nav-tab {
             padding: 12px 30px;
-            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
-            color: #000000;
-            border: 3px solid #000000;
-            border-radius: 0;
+            background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%);
+            color: #ffffff;
+            border: 3px solid #6d28d9;
             cursor: pointer;
             font-size: 16px;
             font-weight: 900;
             transition: all 0.3s;
-            text-decoration: none;
-            display: inline-block;
             text-transform: uppercase;
-            font-family: 'Poppins', sans-serif;
-            position: relative;
-            box-shadow: 5px 5px 0px #000000;
+            box-shadow: 5px 5px 0px #4c1d95;
             transform: skew(-5deg);
         }
 
-        .nav-tab span {
-            display: inline-block;
-            transform: skew(5deg);
-        }
-
         .nav-tab:hover {
-            background: linear-gradient(135deg, #FFA500 0%, #FFD700 100%);
+            background: linear-gradient(135deg, #a855f7 0%, #c084fc 100%);
             transform: skew(-5deg) translateY(-3px);
-            box-shadow: 7px 7px 0px #000000;
         }
 
         .nav-tab.active {
-            background: #FF1744;
-            color: #FFFFFF;
-            box-shadow: 5px 5px 0px #000000, 0 0 20px #FF1744;
+            background: linear-gradient(135deg, #ec4899 0%, #f472b6 100%);
+            box-shadow: 5px 5px 0px #be185d, 0 0 30px #ec4899;
         }
 
         .category-section {
@@ -188,14 +160,8 @@
         }
 
         @keyframes slideIn {
-            from { 
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to { 
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .product-grid {
@@ -206,13 +172,12 @@
         }
 
         .product-card {
-            background: #2a2a2a;
-            border: 4px solid #FFD700;
-            border-radius: 0;
-            padding: 0;
+            background: #ffffff;
+            border: 4px solid #a855f7;
+            border-radius: 15px;
             text-align: center;
             transition: all 0.3s;
-            box-shadow: 8px 8px 0px #000000;
+            box-shadow: 8px 8px 0px #6d28d9;
             position: relative;
             overflow: hidden;
         }
@@ -222,103 +187,53 @@
             position: absolute;
             top: 10px;
             right: -30px;
-            background: #FF1744;
+            background: #ec4899;
             color: white;
             padding: 5px 40px;
             font-weight: 900;
             transform: rotate(45deg);
             font-size: 12px;
             z-index: 10;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.5);
         }
 
         .product-card:hover {
-            transform: translateY(-8px) rotate(1deg);
-            box-shadow: 12px 12px 0px #FFD700;
-            border-color: #FF1744;
+            transform: translateY(-8px);
+            box-shadow: 12px 12px 0px #8b5cf6, 0 0 30px rgba(168, 85, 247, 0.5);
         }
 
         .product-image {
             width: 100%;
             height: 250px;
             object-fit: cover;
-            border-bottom: 4px solid #FFD700;
-            transition: all 0.3s;
-        }
-
-        .product-card:hover .product-image {
-            filter: brightness(1.2) contrast(1.1);
-        }
-
-        .product-info {
-            padding: 20px;
-            background: #1a1a1a;
-        }
-
-        .product-name {
-            color: #FFD700;
-            font-weight: 900;
-            font-size: 1.1em;
-            margin-bottom: 10px;
-            text-transform: uppercase;
+            border-radius: 15px 15px 0 0;
         }
 
         .product-price {
             font-size: 1.5em;
-            color: #FFD700;
+            color: #a855f7;
             font-weight: 900;
             margin: 15px 0;
             font-family: 'Bangers', cursive;
-            text-shadow: 2px 2px 0px #000000;
         }
 
         .buy-button {
-            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
-            color: #000000;
-            border: 3px solid #000000;
+            background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%);
+            color: #ffffff;
+            border: 3px solid #6d28d9;
             padding: 12px 30px;
-            border-radius: 0;
+            border-radius: 50px;
             cursor: pointer;
             font-size: 16px;
             font-weight: 900;
             transition: all 0.3s;
-            width: 100%;
+            width: calc(100% - 40px);
+            margin: 20px;
             text-transform: uppercase;
-            box-shadow: 3px 3px 0px #000000;
-            position: relative;
         }
 
         .buy-button:hover {
-            background: linear-gradient(135deg, #FF1744 0%, #FF4444 100%);
-            color: white;
+            background: linear-gradient(135deg, #ec4899 0%, #f472b6 100%);
             transform: scale(1.05);
-            box-shadow: 5px 5px 0px #000000;
-        }
-
-        .buy-button::after {
-            content: "⚡";
-            margin-left: 10px;
-        }
-
-        .thank-you {
-            text-align: center;
-            margin: 40px 0;
-            padding: 30px;
-            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
-            color: #000000;
-            border-radius: 0;
-            font-size: 1.8em;
-            font-weight: 900;
-            border: 5px solid #000000;
-            box-shadow: 10px 10px 0px #000000;
-            font-family: 'Permanent Marker', cursive;
-            text-transform: uppercase;
-            animation: bounce 2s ease-in-out infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
         }
 
         .home-categories {
@@ -329,38 +244,19 @@
         }
 
         .category-card {
-            background: #2a2a2a;
-            border: 5px solid #FFD700;
-            border-radius: 0;
+            background: #ffffff;
+            border: 5px solid #a855f7;
+            border-radius: 20px;
             padding: 30px;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s;
-            color: #FFD700;
-            box-shadow: 10px 10px 0px #000000;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .category-card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,215,0,0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .category-card:hover::before {
-            left: 100%;
+            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.3);
         }
 
         .category-card:hover {
-            transform: scale(1.05) rotate(-2deg);
-            box-shadow: 15px 15px 0px #FFD700;
-            border-color: #FF1744;
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(168, 85, 247, 0.5);
         }
 
         .category-card img {
@@ -368,14 +264,12 @@
             height: 200px;
             object-fit: cover;
             border-radius: 50%;
-            margin-bottom: 20px;
-            border: 5px solid #FFD700;
+            border: 5px solid #a855f7;
             transition: all 0.3s;
         }
 
         .category-card:hover img {
-            border-color: #FF1744;
-            transform: rotate(5deg) scale(1.1);
+            transform: scale(1.1);
         }
 
         .category-card h3 {
@@ -384,117 +278,70 @@
             font-weight: 900;
             text-transform: uppercase;
             font-family: 'Bangers', cursive;
-            letter-spacing: 2px;
+            color: #7c3aed;
         }
 
         .category-card p {
-            color: #FFFFFF;
+            color: #6d28d9;
             font-weight: 600;
             margin-top: 10px;
         }
 
-        .section-title {
+        .thank-you {
             text-align: center;
-            color: #FFD700;
-            margin-bottom: 30px;
-            font-size: 2.5em;
-            font-family: 'Bangers', cursive;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            text-shadow: 3px 3px 0px #000000;
-            position: relative;
-            display: inline-block;
-            width: 100%;
-        }
-
-        .section-title::after {
-            content: "⚡⚡⚡";
-            display: block;
-            font-size: 0.5em;
-            margin-top: 10px;
-        }
-
-        @media (max-width: 768px) {
-            .product-grid {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-                gap: 15px;
-            }
-            
-            h1 {
-                font-size: 2em;
-            }
-
-            .nav-tab {
-                padding: 10px 20px;
-                font-size: 14px;
-            }
-        }
-
-        /* Starburst badge */
-        .badge {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            width: 60px;
-            height: 60px;
-            background: #FF1744;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            margin: 40px 0;
+            padding: 30px;
+            background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 50%, #c084fc 100%);
+            color: #ffffff;
+            border-radius: 20px;
+            font-size: 1.8em;
             font-weight: 900;
-            font-size: 12px;
-            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-            z-index: 5;
-            animation: spin 10s linear infinite;
+            border: 5px solid #6d28d9;
+            font-family: 'Permanent Marker', cursive;
+            text-transform: uppercase;
         }
 
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+        h2 {
+            text-align: center;
+            color: #7c3aed;
+            margin-bottom: 20px;
+            font-family: 'Bangers', cursive;
+            font-size: 2em;
+            letter-spacing: 2px;
         }
     </style>
 </head>
-
 <body>
     <div class="container">
         <header>
-            <h1>🛍️ Welcome to Our Store</h1>
-            <p style="color: #666; font-size: 1.1em;">Premium Quality Products at Great Prices</p>
+            <h1>⚡ OTAKU MERCH SHOP ⚡</h1>
+            <p class="subtitle">Your Ultimate Anime Paradise!</p>
         </header>
 
         <div class="nav-tabs">
             <button class="nav-tab active" onclick="showSection('home')">Home</button>
             <button class="nav-tab" onclick="showSection('jackets')">Jackets</button>
             <button class="nav-tab" onclick="showSection('keychains')">Key Chains</button>
-            <button class="nav-tab" onclick="showSection('necklaces')">Necklaces</button>
         </div>
 
-        <!-- HOME SECTION -->
         <div id="home" class="category-section active">
-            <h2 style="text-align: center; color: #FFD700; margin-bottom: 30px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">Browse Our Categories</h2>
+            <h2>🌟 Browse Our Categories 🌟</h2>
             <div class="home-categories">
                 <div class="category-card" onclick="showSection('jackets')">
                     <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400&h=400&fit=crop" alt="Jackets">
-                    <h3>Jackets</h3>
-                    <p>Stylish and comfortable</p>
+                    <h3>🧥 Jackets</h3>
+                    <p>Stylish anime-inspired wear</p>
                 </div>
                 <div class="category-card" onclick="showSection('keychains')">
                     <img src="https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=400&h=400&fit=crop" alt="Key Chains">
-                    <h3>Key Chains</h3>
-                    <p>Unique and practical</p>
-                </div>
-                <div class="category-card" onclick="showSection('necklaces')">
-                    <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400&h=400&fit=crop" alt="Necklaces">
-                    <h3>Necklaces</h3>
-                    <p>Elegant jewelry pieces</p>
+                    <h3>🔑 Key Chains</h3>
+                    <p>Collectible anime charms</p>
                 </div>
             </div>
         </div>
 
-        <!-- JACKETS SECTION -->
         <div id="jackets" class="category-section">
-            <h2 style="text-align: center; color: #FFD700; margin-bottom: 20px;">Jackets Collection</h2>
+            <h2>🧥 Jackets Collection 🧥</h2>
             <div class="product-grid">
                 <div class="product-card">
                     <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400&h=300&fit=crop" alt="Jacket 1" class="product-image">
@@ -521,37 +368,11 @@
                     <div class="product-price">₱300.00</div>
                     <button class="buy-button" onclick="buyProduct('Jacket 5')">🛒 Add to Cart</button>
                 </div>
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1578587018452-892bacefd3f2?w=400&h=300&fit=crop" alt="Jacket 6" class="product-image">
-                    <div class="product-price">₱300.00</div>
-                    <button class="buy-button" onclick="buyProduct('Jacket 6')">🛒 Add to Cart</button>
-                </div>
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1495105787522-5334e3ffa0ef?w=400&h=300&fit=crop" alt="Jacket 7" class="product-image">
-                    <div class="product-price">₱300.00</div>
-                    <button class="buy-button" onclick="buyProduct('Jacket 7')">🛒 Add to Cart</button>
-                </div>
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1544441892-794166f1e3be?w=400&h=300&fit=crop" alt="Jacket 8" class="product-image">
-                    <div class="product-price">₱300.00</div>
-                    <button class="buy-button" onclick="buyProduct('Jacket 8')">🛒 Add to Cart</button>
-                </div>
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1516257984-b1b4d707412e?w=400&h=300&fit=crop" alt="Jacket 9" class="product-image">
-                    <div class="product-price">₱300.00</div>
-                    <button class="buy-button" onclick="buyProduct('Jacket 9')">🛒 Add to Cart</button>
-                </div>
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1525450824786-227cbef70703?w=400&h=300&fit=crop" alt="Jacket 10" class="product-image">
-                    <div class="product-price">₱300.00</div>
-                    <button class="buy-button" onclick="buyProduct('Jacket 10')">🛒 Add to Cart</button>
-                </div>
             </div>
         </div>
 
-        <!-- KEY CHAINS SECTION -->
         <div id="keychains" class="category-section">
-            <h2 style="text-align: center; color: #FFD700; margin-bottom: 20px;">Key Chains Collection</h2>
+            <h2>🔑 Key Chains Collection 🔑</h2>
             <div class="product-grid">
                 <div class="product-card">
                     <img src="https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=400&h=300&fit=crop" alt="Keychain 1" class="product-image">
@@ -578,110 +399,23 @@
                     <div class="product-price">₱300.00</div>
                     <button class="buy-button" onclick="buyProduct('Keychain 5')">🛒 Add to Cart</button>
                 </div>
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1598300056393-4aac492f4344?w=400&h=300&fit=crop" alt="Keychain 6" class="product-image">
-                    <div class="product-price">₱300.00</div>
-                    <button class="buy-button" onclick="buyProduct('Keychain 6')">🛒 Add to Cart</button>
-                </div>
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1606398524609-f9a4ec200b9e?w=400&h=300&fit=crop" alt="Keychain 7" class="product-image">
-                    <div class="product-price">₱300.00</div>
-                    <button class="buy-button" onclick="buyProduct('Keychain 7')">🛒 Add to Cart</button>
-                </div>
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1544816155-12df9643f363?w=400&h=300&fit=crop" alt="Keychain 8" class="product-image">
-                    <div class="product-price">₱300.00</div>
-                    <button class="buy-button" onclick="buyProduct('Keychain 8')">🛒 Add to Cart</button>
-                </div>
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=400&h=300&fit=crop" alt="Keychain 9" class="product-image">
-                    <div class="product-price">₱300.00</div>
-                    <button class="buy-button" onclick="buyProduct('Keychain 9')">🛒 Add to Cart</button>
-                </div>
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1565732769851-7e2b5e0d3a0f?w=400&h=300&fit=crop" alt="Keychain 10" class="product-image">
-                    <div class="product-price">₱300.00</div>
-                    <button class="buy-button" onclick="buyProduct('Keychain 10')">🛒 Add to Cart</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- NECKLACES SECTION -->
-        <div id="necklaces" class="category-section">
-            <h2 style="text-align: center; color: #FFD700; margin-bottom: 20px;">Necklaces Collection</h2>
-            <div class="product-grid">
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400&h=300&fit=crop" alt="Necklace 1" class="product-image">
-                    <div class="product-price">₱300.00</div>
-                    <button class="buy-button" onclick="buyProduct('Necklace 1')">🛒 Add to Cart</button>
-                </div>
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=400&h=300&fit=crop" alt="Necklace 2" class="product-image">
-                    <div class="product-price">₱300.00</div>
-                    <button class="buy-button" onclick="buyProduct('Necklace 2')">🛒 Add to Cart</button>
-                </div>
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=400&h=300&fit=crop" alt="Necklace 3" class="product-image">
-                    <div class="product-price">₱300.00</div>
-                    <button class="buy-button" onclick="buyProduct('Necklace 3')">🛒 Add to Cart</button>
-                </div>
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1620879094056-7f53ffda93f9?w=400&h=300&fit=crop" alt="Necklace 4" class="product-image">
-                    <div class="product-price">₱300.00</div>
-                    <button class="buy-button" onclick="buyProduct('Necklace 4')">🛒 Add to Cart</button>
-                </div>
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1506630448388-4e683c67ddb0?w=400&h=300&fit=crop" alt="Necklace 5" class="product-image">
-                    <div class="product-price">₱300.00</div>
-                    <button class="buy-button" onclick="buyProduct('Necklace 5')">🛒 Add to Cart</button>
-                </div>
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?w=400&h=300&fit=crop" alt="Necklace 6" class="product-image">
-                    <div class="product-price">₱300.00</div>
-                    <button class="buy-button" onclick="buyProduct('Necklace 6')">🛒 Add to Cart</button>
-                </div>
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=400&h=300&fit=crop" alt="Necklace 7" class="product-image">
-                    <div class="product-price">₱300.00</div>
-                    <button class="buy-button" onclick="buyProduct('Necklace 7')">🛒 Add to Cart</button>
-                </div>
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1630019852942-f89202989a59?w=400&h=300&fit=crop" alt="Necklace 8" class="product-image">
-                    <div class="product-price">₱300.00</div>
-                    <button class="buy-button" onclick="buyProduct('Necklace 8')">🛒 Add to Cart</button>
-                </div>
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400&h=300&fit=crop" alt="Necklace 9" class="product-image">
-                    <div class="product-price">₱300.00</div>
-                    <button class="buy-button" onclick="buyProduct('Necklace 9')">🛒 Add to Cart</button>
-                </div>
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1522295127583-e3648e1f5b5e?w=400&h=300&fit=crop" alt="Necklace 10" class="product-image">
-                    <div class="product-price">₱300.00</div>
-                    <button class="buy-button" onclick="buyProduct('Necklace 10')">🛒 Add to Cart</button>
-                </div>
             </div>
         </div>
 
         <div class="thank-you">
-            ✨ Thank You For Shopping With Us! ✨
+            ✨ Arigatou Gozaimasu! Thanks For Shopping! 💜
         </div>
     </div>
 
     <script>
         function showSection(sectionId) {
-            // Hide all sections
             const sections = document.querySelectorAll('.category-section');
             sections.forEach(section => section.classList.remove('active'));
             
-            // Remove active class from all tabs
             const tabs = document.querySelectorAll('.nav-tab');
             tabs.forEach(tab => tab.classList.remove('active'));
             
-            // Show selected section
             document.getElementById(sectionId).classList.add('active');
-            
-            // Add active class to clicked tab
             event.target.classList.add('active');
         }
 
