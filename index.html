@@ -1,102 +1,445 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel = "stylesheet" href = "styles.css">
-    <title>HTML Basics</title>
+    <title>Online Store</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #FFD700;
+        }
+
+        h1 {
+            color: #FFD700;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .nav-tab {
+            padding: 12px 30px;
+            background: #FFD700;
+            color: #000000;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .nav-tab:hover {
+            background: #FFA500;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.6);
+        }
+
+        .nav-tab.active {
+            background: #FFA500;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+        }
+
+        .category-section {
+            display: none;
+        }
+
+        .category-section.active {
+            display: block;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .product-card {
+            background: white;
+            border: 2px solid #FFD700;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5);
+            border-color: #FFA500;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            background: #f5f5f5;
+        }
+
+        .product-price {
+            font-size: 1.3em;
+            color: #000000;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+        .buy-button {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            color: #000000;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s;
+            width: 100%;
+        }
+
+        .buy-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.6);
+            background: linear-gradient(135deg, #FFA500 0%, #FFD700 100%);
+        }
+
+        .thank-you {
+            text-align: center;
+            margin: 40px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            color: #000000;
+            border-radius: 15px;
+            font-size: 1.5em;
+            font-weight: bold;
+            animation: slideIn 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-10px); }
+            to { transform: translateX(10px); }
+        }
+
+        .home-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .category-card {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: #000000;
+            border: 3px solid #000000;
+        }
+
+        .category-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.6);
+            border-color: #FFD700;
+        }
+
+        .category-card img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            border: 5px solid #000000;
+        }
+
+        .category-card h3 {
+            font-size: 1.5em;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 15px;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>HTML Basics for Beginners</h1>
-    
-    <h2>Headings</h2>
-    <h3>This is a subheading</h3>
-    <h4>Smaller heading</h4>
-    
-    <h2>Paragraphs</h2>
-    <p>This is a paragraph. Paragraphs contain text content.</p>
-    <p>This is another paragraph with <strong>bold text</strong> and <em>italic text</em>.</p>
-    
-    <h2>Links</h2>
-    <a href="https://www.example.com">This is a link</a>
-    
-    <h2>Lists</h2>
-    <h3>Unordered List</h3>
-    <ul>
-        <li>First item</li>
-        <li>Second item</li>
-        <li>Third item</li>
-    </ul>
-    
-    <h3>Ordered List</h3>
-    <ol>
-        <li>Step one</li>
-        <li>Step two</li>
-        <li>Step three</li>
-    </ol>
-    
-    <h2>Form Elements</h2>
-    <form>
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name">
-        <br><br>
-        
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email">
-        <br><br>
-        
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password">
-        <br><br>
-        
-        <label for="message">Message:</label>
-        <textarea id="message" name="message" rows="4" cols="30"></textarea>
-        <br><br>
-        
-        <input type="checkbox" id="subscribe" name="subscribe">
-        <label for="subscribe">Subscribe to newsletter</label>
-        <br><br>
-        
-        <input type="radio" id="option1" name="choice" value="option1">
-        <label for="option1">Option 1</label>
-        <input type="radio" id="option2" name="choice" value="option2">
-        <label for="option2">Option 2</label>
-        <br><br>
-        
-        <button type="submit">Submit Button</button>
-        <button type="button">Regular Button</button>
-        <button type="reset">Reset Button</button>
-    </form>
-    
-    <h2>Images</h2>
-    <img src="https://via.placeholder.com/150" alt="Placeholder image">
-    
-    <h2>Table</h2>
-    <table border="1">
-        <tr>
-            <th>Header 1</th>
-            <th>Header 2</th>
-        </tr>
-        <tr>
-            <td>Row 1, Cell 1</td>
-            <td>Row 1, Cell 2</td>
-        </tr>
-        <tr>
-            <td>Row 2, Cell 1</td>
-            <td>Row 2, Cell 2</td>
-        </tr>
-    </table>
-    
-    <h2>Horizontal Line</h2>
-    <hr>
-    
-    <h2>Blockquote</h2>
-    <blockquote>This is a quoted text from another source.</blockquote>
-    
-    <h2>Div and Span</h2>
-    <div>This is a div element (block-level container)</div>
-    <p>This paragraph has a <span>span element</span> inside (inline container).</p>
-    
+    <div class="container">
+        <header>
+            <h1>🛍️ Welcome to Our Store</h1>
+            <p style="color: #666; font-size: 1.1em;">Premium Quality Products at Great Prices</p>
+        </header>
+
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showSection('home')">Home</button>
+            <button class="nav-tab" onclick="showSection('jackets')">Jackets</button>
+            <button class="nav-tab" onclick="showSection('keychains')">Key Chains</button>
+            <button class="nav-tab" onclick="showSection('necklaces')">Necklaces</button>
+        </div>
+
+        <!-- HOME SECTION -->
+        <div id="home" class="category-section active">
+            <h2 style="text-align: center; color: #FFD700; margin-bottom: 30px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">Browse Our Categories</h2>
+            <div class="home-categories">
+                <div class="category-card" onclick="showSection('jackets')">
+                    <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400&h=400&fit=crop" alt="Jackets">
+                    <h3>Jackets</h3>
+                    <p>Stylish and comfortable</p>
+                </div>
+                <div class="category-card" onclick="showSection('keychains')">
+                    <img src="https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=400&h=400&fit=crop" alt="Key Chains">
+                    <h3>Key Chains</h3>
+                    <p>Unique and practical</p>
+                </div>
+                <div class="category-card" onclick="showSection('necklaces')">
+                    <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400&h=400&fit=crop" alt="Necklaces">
+                    <h3>Necklaces</h3>
+                    <p>Elegant jewelry pieces</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- JACKETS SECTION -->
+        <div id="jackets" class="category-section">
+            <h2 style="text-align: center; color: #FFD700; margin-bottom: 20px;">Jackets Collection</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400&h=300&fit=crop" alt="Jacket 1" class="product-image">
+                    <div class="product-price">₱300.00</div>
+                    <button class="buy-button" onclick="buyProduct('Jacket 1')">🛒 Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=400&h=300&fit=crop" alt="Jacket 2" class="product-image">
+                    <div class="product-price">₱300.00</div>
+                    <button class="buy-button" onclick="buyProduct('Jacket 2')">🛒 Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=400&h=300&fit=crop" alt="Jacket 3" class="product-image">
+                    <div class="product-price">₱300.00</div>
+                    <button class="buy-button" onclick="buyProduct('Jacket 3')">🛒 Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1520367745676-56196632073f?w=400&h=300&fit=crop" alt="Jacket 4" class="product-image">
+                    <div class="product-price">₱300.00</div>
+                    <button class="buy-button" onclick="buyProduct('Jacket 4')">🛒 Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1594938291221-94f18cbb5660?w=400&h=300&fit=crop" alt="Jacket 5" class="product-image">
+                    <div class="product-price">₱300.00</div>
+                    <button class="buy-button" onclick="buyProduct('Jacket 5')">🛒 Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1578587018452-892bacefd3f2?w=400&h=300&fit=crop" alt="Jacket 6" class="product-image">
+                    <div class="product-price">₱300.00</div>
+                    <button class="buy-button" onclick="buyProduct('Jacket 6')">🛒 Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1495105787522-5334e3ffa0ef?w=400&h=300&fit=crop" alt="Jacket 7" class="product-image">
+                    <div class="product-price">₱300.00</div>
+                    <button class="buy-button" onclick="buyProduct('Jacket 7')">🛒 Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1544441892-794166f1e3be?w=400&h=300&fit=crop" alt="Jacket 8" class="product-image">
+                    <div class="product-price">₱300.00</div>
+                    <button class="buy-button" onclick="buyProduct('Jacket 8')">🛒 Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1516257984-b1b4d707412e?w=400&h=300&fit=crop" alt="Jacket 9" class="product-image">
+                    <div class="product-price">₱300.00</div>
+                    <button class="buy-button" onclick="buyProduct('Jacket 9')">🛒 Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1525450824786-227cbef70703?w=400&h=300&fit=crop" alt="Jacket 10" class="product-image">
+                    <div class="product-price">₱300.00</div>
+                    <button class="buy-button" onclick="buyProduct('Jacket 10')">🛒 Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- KEY CHAINS SECTION -->
+        <div id="keychains" class="category-section">
+            <h2 style="text-align: center; color: #FFD700; margin-bottom: 20px;">Key Chains Collection</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=400&h=300&fit=crop" alt="Keychain 1" class="product-image">
+                    <div class="product-price">₱300.00</div>
+                    <button class="buy-button" onclick="buyProduct('Keychain 1')">🛒 Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1628202926206-c63a34b1618f?w=400&h=300&fit=crop" alt="Keychain 2" class="product-image">
+                    <div class="product-price">₱300.00</div>
+                    <button class="buy-button" onclick="buyProduct('Keychain 2')">🛒 Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1600520611035-ea79351c9b30?w=400&h=300&fit=crop" alt="Keychain 3" class="product-image">
+                    <div class="product-price">₱300.00</div>
+                    <button class="buy-button" onclick="buyProduct('Keychain 3')">🛒 Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1590736969955-71cc94901144?w=400&h=300&fit=crop" alt="Keychain 4" class="product-image">
+                    <div class="product-price">₱300.00</div>
+                    <button class="buy-button" onclick="buyProduct('Keychain 4')">🛒 Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1563291074-2bf8677ac0e5?w=400&h=300&fit=crop" alt="Keychain 5" class="product-image">
+                    <div class="product-price">₱300.00</div>
+                    <button class="buy-button" onclick="buyProduct('Keychain 5')">🛒 Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1598300056393-4aac492f4344?w=400&h=300&fit=crop" alt="Keychain 6" class="product-image">
+                    <div class="product-price">₱300.00</div>
+                    <button class="buy-button" onclick="buyProduct('Keychain 6')">🛒 Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1606398524609-f9a4ec200b9e?w=400&h=300&fit=crop" alt="Keychain 7" class="product-image">
+                    <div class="product-price">₱300.00</div>
+                    <button class="buy-button" onclick="buyProduct('Keychain 7')">🛒 Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1544816155-12df9643f363?w=400&h=300&fit=crop" alt="Keychain 8" class="product-image">
+                    <div class="product-price">₱300.00</div>
+                    <button class="buy-button" onclick="buyProduct('Keychain 8')">🛒 Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=400&h=300&fit=crop" alt="Keychain 9" class="product-image">
+                    <div class="product-price">₱300.00</div>
+                    <button class="buy-button" onclick="buyProduct('Keychain 9')">🛒 Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1565732769851-7e2b5e0d3a0f?w=400&h=300&fit=crop" alt="Keychain 10" class="product-image">
+                    <div class="product-price">₱300.00</div>
+                    <button class="buy-button" onclick="buyProduct('Keychain 10')">🛒 Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- NECKLACES SECTION -->
+        <div id="necklaces" class="category-section">
+            <h2 style="text-align: center; color: #FFD700; margin-bottom: 20px;">Necklaces Collection</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400&h=300&fit=crop" alt="Necklace 1" class="product-image">
+                    <div class="product-price">₱300.00</div>
+                    <button class="buy-button" onclick="buyProduct('Necklace 1')">🛒 Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=400&h=300&fit=crop" alt="Necklace 2" class="product-image">
+                    <div class="product-price">₱300.00</div>
+                    <button class="buy-button" onclick="buyProduct('Necklace 2')">🛒 Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=400&h=300&fit=crop" alt="Necklace 3" class="product-image">
+                    <div class="product-price">₱300.00</div>
+                    <button class="buy-button" onclick="buyProduct('Necklace 3')">🛒 Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1620879094056-7f53ffda93f9?w=400&h=300&fit=crop" alt="Necklace 4" class="product-image">
+                    <div class="product-price">₱300.00</div>
+                    <button class="buy-button" onclick="buyProduct('Necklace 4')">🛒 Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1506630448388-4e683c67ddb0?w=400&h=300&fit=crop" alt="Necklace 5" class="product-image">
+                    <div class="product-price">₱300.00</div>
+                    <button class="buy-button" onclick="buyProduct('Necklace 5')">🛒 Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?w=400&h=300&fit=crop" alt="Necklace 6" class="product-image">
+                    <div class="product-price">₱300.00</div>
+                    <button class="buy-button" onclick="buyProduct('Necklace 6')">🛒 Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=400&h=300&fit=crop" alt="Necklace 7" class="product-image">
+                    <div class="product-price">₱300.00</div>
+                    <button class="buy-button" onclick="buyProduct('Necklace 7')">🛒 Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1630019852942-f89202989a59?w=400&h=300&fit=crop" alt="Necklace 8" class="product-image">
+                    <div class="product-price">₱300.00</div>
+                    <button class="buy-button" onclick="buyProduct('Necklace 8')">🛒 Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400&h=300&fit=crop" alt="Necklace 9" class="product-image">
+                    <div class="product-price">₱300.00</div>
+                    <button class="buy-button" onclick="buyProduct('Necklace 9')">🛒 Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1522295127583-e3648e1f5b5e?w=400&h=300&fit=crop" alt="Necklace 10" class="product-image">
+                    <div class="product-price">₱300.00</div>
+                    <button class="buy-button" onclick="buyProduct('Necklace 10')">🛒 Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="thank-you">
+            ✨ Thank You For Shopping With Us! ✨
+        </div>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.category-section');
+            sections.forEach(section => section.classList.remove('active'));
+            
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.nav-tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        function buyProduct(productName) {
+            alert('🛒 ' + productName + ' added to cart!\nPrice: ₱300.00');
+        }
+    </script>
 </body>
 </html>
